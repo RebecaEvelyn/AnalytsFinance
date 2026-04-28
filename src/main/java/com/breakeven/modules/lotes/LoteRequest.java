@@ -16,6 +16,7 @@ public class LoteRequest {
         private Integer quantidadeComprada;
         private BigDecimal custoTotal;
         private BigDecimal transporte = BigDecimal.ZERO;
+        private BigDecimal consumiveis = BigDecimal.ZERO;
 
         public String getNomeProduto() { return nomeProduto; }
         public void setNomeProduto(String nomeProduto) { this.nomeProduto = nomeProduto; }
@@ -25,6 +26,8 @@ public class LoteRequest {
         public void setCustoTotal(BigDecimal custoTotal) { this.custoTotal = custoTotal; }
         public BigDecimal getTransporte() { return transporte; }
         public void setTransporte(BigDecimal transporte) { this.transporte = transporte; }
+        public BigDecimal getConsumiveis() { return consumiveis; }
+        public void setConsumiveis(BigDecimal consumiveis) { this.consumiveis = consumiveis; }
     }
 
     public String getNome() { return nome; }

@@ -50,6 +50,9 @@ public class LoteProduto {
     @Column(name = "transporte", nullable = false, precision = 10, scale = 2)
     private BigDecimal transporte = BigDecimal.ZERO;
 
+    @Column(name = "consumiveis", nullable = false, precision = 10, scale = 2)
+    private BigDecimal consumiveis = BigDecimal.ZERO;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private EstadoLote estado = EstadoLote.ATIVO;
@@ -92,6 +95,8 @@ public class LoteProduto {
     public void setQuantidadeRestante(Integer quantidadeRestante) { this.quantidadeRestante = quantidadeRestante; }
     public BigDecimal getTransporte() { return transporte; }
     public void setTransporte(BigDecimal transporte) { this.transporte = transporte; }
+    public BigDecimal getConsumiveis() { return consumiveis; }
+    public void setConsumiveis(BigDecimal consumiveis) { this.consumiveis = consumiveis; }
     public EstadoLote getEstado() { return estado; }
     public void setEstado(EstadoLote estado) { this.estado = estado; }
     public Boolean getEsgotadoManualmente() { return esgotadoManualmente; }

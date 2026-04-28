@@ -46,6 +46,7 @@ public class LoteService {
             produto.setQuantidadeRestante(p.getQuantidadeComprada());
             produto.setCustoTotal(p.getCustoTotal());
             produto.setTransporte(p.getTransporte() != null ? p.getTransporte() : BigDecimal.ZERO);
+            produto.setConsumiveis(p.getConsumiveis() != null ? p.getConsumiveis() : BigDecimal.ZERO);
             produto.setTenant(tenant);
             loteProdutoRepository.save(produto);
         }
@@ -115,6 +116,20 @@ public class LoteService {
         }
 
         produto.setTransporte(transporte);
+        return loteProdutoRepository.save(produto);
+    }
+
+    @Transactional
+    public LoteProduto actualizarConsumiveis(Long id, BigDecimal consumiveis) {
+        Long tenantId = TenantContext.getTenantId();
+        LoteProduto produto = loteProdutoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+
+        if (!produto.getTenant().getId().equals(tenantId)) {
+            throw new RuntimeException("Acesso negado");
+        }
+
+        produto.setConsumiveis(consumiveis);
         return loteProdutoRepository.save(produto);
     }
 }

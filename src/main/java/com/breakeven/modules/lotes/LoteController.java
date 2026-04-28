@@ -54,4 +54,11 @@ public class LoteController {
             @RequestParam BigDecimal valor) {
         return ResponseEntity.ok(loteService.actualizarTransporte(id, valor));
     }
+
+    @PatchMapping("/produtos/{id}/consumiveis")
+    public ResponseEntity<LoteProduto> actualizarConsumiveis(
+            @PathVariable Long id,
+            @RequestParam BigDecimal valor) {
+        return ResponseEntity.ok(loteService.actualizarConsumiveis(id, valor));
+    }
 }
