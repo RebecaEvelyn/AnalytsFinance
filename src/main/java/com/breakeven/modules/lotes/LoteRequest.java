@@ -3,7 +3,7 @@ package com.breakeven.modules.lotes;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-/*Controlador dos lotes */
+
 public class LoteRequest {
 
     private String nome;
@@ -15,6 +15,7 @@ public class LoteRequest {
         private String nomeProduto;
         private Integer quantidadeComprada;
         private BigDecimal custoTotal;
+        private BigDecimal transporte = BigDecimal.ZERO;
 
         public String getNomeProduto() { return nomeProduto; }
         public void setNomeProduto(String nomeProduto) { this.nomeProduto = nomeProduto; }
@@ -22,6 +23,8 @@ public class LoteRequest {
         public void setQuantidadeComprada(Integer quantidadeComprada) { this.quantidadeComprada = quantidadeComprada; }
         public BigDecimal getCustoTotal() { return custoTotal; }
         public void setCustoTotal(BigDecimal custoTotal) { this.custoTotal = custoTotal; }
+        public BigDecimal getTransporte() { return transporte; }
+        public void setTransporte(BigDecimal transporte) { this.transporte = transporte; }
     }
 
     public String getNome() { return nome; }

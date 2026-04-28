@@ -1,5 +1,6 @@
 package com.breakeven.modules.lotes;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -9,8 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-/*controlador dos produtos em lote se está esgotado ou nao */
+
 @RestController
 @RequestMapping("/api/lotes")
 public class LoteController {
@@ -44,5 +46,12 @@ public class LoteController {
     @PatchMapping("/produtos/{id}/esgotar")
     public ResponseEntity<LoteProduto> esgotar(@PathVariable Long id) {
         return ResponseEntity.ok(loteService.esgotarManualmente(id));
+    }
+
+    @PatchMapping("/produtos/{id}/transporte")
+    public ResponseEntity<LoteProduto> actualizarTransporte(
+            @PathVariable Long id,
+            @RequestParam BigDecimal valor) {
+        return ResponseEntity.ok(loteService.actualizarTransporte(id, valor));
     }
 }

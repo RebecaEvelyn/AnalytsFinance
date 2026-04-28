@@ -1,5 +1,6 @@
 package com.breakeven.modules.lotes;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -44,6 +45,7 @@ public class LoteService {
             produto.setQuantidadeComprada(p.getQuantidadeComprada());
             produto.setQuantidadeRestante(p.getQuantidadeComprada());
             produto.setCustoTotal(p.getCustoTotal());
+            produto.setTransporte(p.getTransporte() != null ? p.getTransporte() : BigDecimal.ZERO);
             produto.setTenant(tenant);
             loteProdutoRepository.save(produto);
         }
@@ -99,6 +101,20 @@ public class LoteService {
             produto.setQuantidadeRestante(novaQuantidade);
         }
 
+        return loteProdutoRepository.save(produto);
+    }
+
+    @Transactional
+    public LoteProduto actualizarTransporte(Long id, BigDecimal transporte) {
+        Long tenantId = TenantContext.getTenantId();
+        LoteProduto produto = loteProdutoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+
+        if (!produto.getTenant().getId().equals(tenantId)) {
+            throw new RuntimeException("Acesso negado");
+        }
+
+        produto.setTransporte(transporte);
         return loteProdutoRepository.save(produto);
     }
 }
